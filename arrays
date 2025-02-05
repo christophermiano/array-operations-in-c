@@ -1,0 +1,44 @@
+#include <stdio.h>
+
+// Function to traverse and display array elements
+void traverse(int arr[], int size) {
+    printf("Array elements: ");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+// Function to insert an element at a specific position
+int insert(int arr[], int size, int element, int position, int capacity) {
+    if (size >= capacity || position > size || position < 0) {
+        printf("Insertion not possible.\n");
+        return size;
+    }
+
+    // Shifting elements to the right
+    for (int i = size; i > position; i--) {
+        arr[i] = arr[i - 1];
+    }
+    arr[position] = element; // Insert the new element
+
+    return size + 1; // New size after insertion
+}
+
+int main() {
+    int arr[10] = {1, 2, 3, 4, 5}; // Initial array
+    int size = 5;                  // Current size of the array
+
+    printf("Before Insertion:\n");
+    traverse(arr, size);
+
+    int element = 99;  // Element to be inserted
+    int position = 2;  // Position where the element will be inserted
+
+    size = insert(arr, size, element, position, 10); // Insert element
+
+    printf("After Insertion:\n");
+    traverse(arr, size);
+
+    return 0;
+}
